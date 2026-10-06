@@ -3,213 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM - Merlín Seguros</title>
+    <title>MERLÍN SEGUROS — CRM Pipeline</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        purple: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                            950: '#2e1065',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.3);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 92, 246, 0.6);
+        }
+    </style>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans min-h-screen">
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-purple-500 selection:text-white">
 
-    <!-- Navbar -->
-    <header class="bg-indigo-900 text-white p-4 shadow-lg flex justify-between items-center">
+    <!-- Navbar Principal -->
+    <header class="bg-slate-900 border-b border-purple-900/40 px-6 py-3.5 flex justify-between items-center shadow-lg relative z-20">
         <div class="flex items-center space-x-3">
-            <i class="fa-solid fa-wand-magic-sparkles text-amber-400 text-2xl"></i>
-            <h1 class="text-xl font-bold tracking-wide">MERLÍN SEGUROS — CRM Pipeline</h1>
+            <!-- Olive Branch Logo SVG (Estilo sutil morado / dorado) -->
+            <div class="w-10 h-10 rounded-xl bg-purple-950 border border-purple-800/50 flex items-center justify-center shadow-inner text-amber-400">
+                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 21c-4-4-7-9-7-14a7 7 0 0 1 14 0c0 5-3 10-7 14z" opacity="0.15" fill="currentColor"/>
+                    <path d="M12 21C12 12 7 6 3 4"/>
+                    <path d="M7 11c-2-1-3-3-3-5 2 0 4 1 5 3"/>
+                    <path d="M10 16c-2.5-1-4-3.5-4-6 2.5 0 5 1.5 6 4"/>
+                    <path d="M12 21c0-9 5-15 9-17"/>
+                    <path d="M17 11c2-1 3-3 3-5-2 0-4 1-5 3"/>
+                    <path d="M14 16c2.5-1 4-3.5 4-6-2.5 0-5 1.5-6 4"/>
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold tracking-wide text-white flex items-center gap-2">
+                    MERLÍN <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-purple-900/60 border border-purple-700/50 text-purple-300">SEGUROS</span>
+                </h1>
+                <p class="text-xs text-slate-400">Gestión Operativa & CRM de Pólizas</p>
+            </div>
         </div>
-        <button onclick="toggleModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-4 py-2 rounded-lg transition shadow">
-            + Nuevo Cliente
-        </button>
+
+        <div class="flex items-center space-x-3">
+            <button id="btn-reset-filter" onclick="clearFilter()" class="hidden text-xs bg-slate-800 hover:bg-slate-700 text-purple-300 px-3 py-2 rounded-lg border border-purple-800/40 transition items-center gap-1.5">
+                <i class="fa-solid fa-filter-circle-xmark"></i> Mostrar Todos
+            </button>
+            <button onclick="openModal()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium text-xs md:text-sm px-4 py-2 rounded-xl transition shadow-lg shadow-purple-900/30 flex items-center gap-2 border border-purple-400/20">
+                <i class="fa-solid fa-plus text-xs"></i>
+                <span>Nuevo Ticket</span>
+            </button>
+        </div>
     </header>
 
-    <!-- Main Content / Pipeline -->
-    <main class="p-6 overflow-x-auto">
-        <div id="pipeline-container" class="flex gap-4 min-w-[1500px]">
-            <!-- Las columnas se generan con JavaScript -->
-        </div>
-    </main>
-
-    <!-- Modal Formulario -->
-    <div id="modal" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center p-4 z-50">
-        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-4 border-b pb-2">
-                <h2 class="text-lg font-bold text-indigo-900">Registrar Cliente / Solicitud</h2>
-                <button onclick="toggleModal()" class="text-slate-400 hover:text-slate-600 text-xl">&times;</button>
+    <!-- App Body: Sidebar + Pipeline -->
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- Sidebar Izquierda: Estados e Sub-estados -->
+        <aside class="w-72 bg-slate-900/90 border-r border-purple-900/30 flex flex-col shrink-0 custom-scrollbar overflow-y-auto">
+            <div class="p-4 border-b border-purple-900/20 flex justify-between items-center">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-purple-400 flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-purple-500"></i> Flujo por Módulos
+                </h2>
+                <span id="active-filter-badge" class="text-[10px] bg-purple-900/80 text-purple-200 px-2 py-0.5 rounded-full font-medium">Todos</span>
             </div>
-            <form id="client-form" class="space-y-4">
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-slate-500">Ramo</label>
-                        <select id="ramo" class="w-full border p-2 rounded text-sm bg-slate-50">
-                            <option value="Autos">Autos</option>
-                            <option value="Vida">Vida</option>
-                            <option value="Hogar">Hogar</option>
-                            <option value="Salud">Salud</option>
-                        </select>
+
+            <nav class="p-3 space-y-4 text-xs">
+                <!-- Filtro General -->
+                <div>
+                    <button onclick="filterBySubstate('all', 'Todos los Estados')" class="substate-btn w-full text-left px-3 py-2 rounded-lg hover:bg-purple-900/30 text-slate-300 font-medium flex justify-between items-center transition bg-purple-950/40 border border-purple-800/30">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-purple-400"></i> Todos los Tickets
+                        </span>
+                        <span id="count-all" class="bg-purple-900 text-purple-200 text-[10px] font-bold px-2 py-0.5 rounded-full">0</span>
+                    </button>
+                </div>
+
+                <!-- 1. Módulo de Contacto -->
+                <div class="space-y-1">
+                    <div class="px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                        <span class="text-purple-400"><i class="fa-solid fa-address-book mr-1.5"></i>1. Contacto</span>
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase text-slate-500">Fuente / Origen</label>
-                        <select id="origen" class="w-full border p-2 rounded text-sm bg-slate-50">
-                            <option value="Meta">Meta</option>
-                            <option value="TikTok">TikTok</option>
-                            <option value="Google">Google</option>
-                            <option value="Referido">Referidos</option>
-                        </select>
+                    <div class="pl-2 space-y-0.5 border-l-2 border-purple-900/50">
+                        <button onclick="filterBySubstate('Potenciales', 'Potenciales')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Potenciales</span>
+                            <span id="count-Potenciales" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Habituales', 'Habituales')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Habituales</span>
+                            <span id="count-Habituales" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Reanudados', 'Reanudados')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Reanudados</span>
+                            <span id="count-Reanudados" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Inactivos', 'Inactivos')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Inactivos</span>
+                            <span id="count-Inactivos" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Ilocalizables', 'Ilocalizables')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Ilocalizables</span>
+                            <span id="count-Ilocalizables" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
                     </div>
                 </div>
 
-                <div class="border-t pt-2">
-                    <h3 class="text-xs font-bold uppercase text-indigo-900 mb-2">Datos de la Persona</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <input id="nombre" type="text" placeholder="Nombre completo" class="border p-2 rounded text-sm w-full" required>
-                        <input id="cedula" type="text" placeholder="CC / NIT" class="border p-2 rounded text-sm w-full" required>
-                        <input id="telefono" type="tel" placeholder="Teléfono" class="border p-2 rounded text-sm w-full">
-                        <input id="ciudad" type="text" placeholder="Ciudad" class="border p-2 rounded text-sm w-full">
+                <!-- 2. Módulo Técnico -->
+                <div class="space-y-1">
+                    <div class="px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                        <span class="text-amber-400"><i class="fa-solid fa-gears mr-1.5"></i>2. Técnico</span>
+                    </div>
+                    <div class="pl-2 space-y-0.5 border-l-2 border-amber-900/40">
+                        <button onclick="filterBySubstate('Solicitud de elaboración', 'Solicitud elaboración')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Solicitud elaboración</span>
+                            <span id="count-Solicitud de elaboración" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Propuesta elaborada', 'Propuesta elaborada')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Propuesta elaborada</span>
+                            <span id="count-Propuesta elaborada" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Propuesta enviada', 'Propuesta enviada')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Propuesta enviada</span>
+                            <span id="count-Propuesta enviada" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Inspección', 'Inspección')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Inspección</span>
+                            <span id="count-Inspección" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Re-inspección', 'Re-inspección')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Re-inspección</span>
+                            <span id="count-Re-inspección" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Emisión Solicitada', 'Emisión Solicitada')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Emisión Solicitada</span>
+                            <span id="count-Emisión Solicitada" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Póliza elaborada', 'Póliza elaborada')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Póliza elaborada</span>
+                            <span id="count-Póliza elaborada" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Autorización especial', 'Autorización especial')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Autorización especial</span>
+                            <span id="count-Autorización especial" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
                     </div>
                 </div>
 
-                <div class="border-t pt-2">
-                    <h3 class="text-xs font-bold uppercase text-indigo-900 mb-2">Datos del Vehículo / Objeto</h3>
-                    <div class="grid grid-cols-3 gap-4">
-                        <input id="placa" type="text" placeholder="Placa" class="border p-2 rounded text-sm w-full uppercase">
-                        <input id="marca" type="text" placeholder="Marca y Línea" class="border p-2 rounded text-sm w-full">
-                        <input id="modelo" type="text" placeholder="Modelo" class="border p-2 rounded text-sm w-full">
+                <!-- 3. Módulo Comercial -->
+                <div class="space-y-1">
+                    <div class="px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                        <span class="text-violet-400"><i class="fa-solid fa-handshake mr-1.5"></i>3. Comercial</span>
                     </div>
-                </div>
-
-                <div class="border-t pt-2">
-                    <h3 class="text-xs font-bold uppercase text-indigo-900 mb-2">Compañía & Financiero</h3>
-                    <div class="grid grid-cols-3 gap-4">
-                        <input id="aseguradora" type="text" placeholder="Aseguradora" class="border p-2 rounded text-sm w-full">
-                        <input id="primaBruta" type="number" placeholder="Prima Bruta ($)" class="border p-2 rounded text-sm w-full">
-                        <input id="primaNeta" type="number" placeholder="Prima Neta ($)" class="border p-2 rounded text-sm w-full">
-                    </div>
-                </div>
-
-                <div class="flex justify-end gap-2 pt-4 border-t">
-                    <button type="button" onclick="toggleModal()" class="px-4 py-2 border rounded text-slate-600 text-sm">Cancelar</button>
-                    <button type="submit" class="px-4 py-2 bg-indigo-900 text-white rounded text-sm hover:bg-indigo-800">Guardar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Script Principal -->
-    <script>
-        const stages = [
-            { id: 'contacto', title: '1. Contacto', color: 'border-blue-500' },
-            { id: 'tecnico', title: '2. Técnico', color: 'border-yellow-500' },
-            { id: 'comercial', title: '3. Comercial', color: 'border-orange-500' },
-            { id: 'financiero', title: '4. Financiero', color: 'border-emerald-500' },
-            { id: 'radicacion', title: '5. Radicación', color: 'border-purple-500' }
-        ];
-
-        let clients = JSON.parse(localStorage.getItem('merlin_clients')) || [
-            {
-                id: 1,
-                nombre: 'Carlos Pérez',
-                cedula: '1018239120',
-                telefono: '3001234567',
-                ramo: 'Autos',
-                origen: 'Meta',
-                placa: 'KLR-456',
-                marca: 'Mazda 3',
-                aseguradora: 'Sura',
-                primaBruta: 2500000,
-                stage: 'contacto',
-                substate: 'Potencial'
-            }
-        ];
-
-        function renderPipeline() {
-            const container = document.getElementById('pipeline-container');
-            container.innerHTML = '';
-
-            stages.forEach(stage => {
-                const column = document.createElement('div');
-                column.className = `w-72 bg-slate-200/60 rounded-lg p-3 flex flex-col gap-3 border-t-4 ${stage.color} min-h-[70vh]`;
-                
-                const stageClients = clients.filter(c => c.stage === stage.id);
-
-                column.innerHTML = `
-                    <div class="flex justify-between items-center mb-1">
-                        <h2 class="font-bold text-sm text-slate-700 uppercase">${stage.title}</h2>
-                        <span class="bg-slate-300 text-slate-700 text-xs px-2 py-0.5 rounded-full font-bold">${stageClients.length}</span>
-                    </div>
-                    <div class="flex-1 space-y-3 overflow-y-auto" ondragover="allowDrop(event)" ondrop="drop(event, '${stage.id}')">
-                        ${stageClients.map(c => createCard(c)).join('')}
-                    </div>
-                `;
-                container.appendChild(column);
-            });
-        }
-
-        function createCard(c) {
-            return `
-                <div id="card-${c.id}" draggable="true" ondragstart="drag(event, ${c.id})" class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition cursor-grab active:cursor-grabbing">
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-[10px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-full">${c.ramo}</span>
-                        <span class="text-[10px] text-slate-400 font-medium">${c.origen}</span>
-                    </div>
-                    <h3 class="font-bold text-sm text-slate-800">${c.nombre}</h3>
-                    <p class="text-xs text-slate-500">CC: ${c.cedula}</p>
-                    ${c.placa ? `<p class="text-xs font-semibold text-slate-700 mt-1"><i class="fa-solid fa-car text-slate-400 mr-1"></i>${c.placa} (${c.marca})</p>` : ''}
-                    <div class="mt-3 pt-2 border-t flex justify-between items-center text-xs">
-                        <span class="text-emerald-600 font-bold">$${Number(c.primaBruta || 0).toLocaleString()}</span>
-                        <select onchange="changeStage(${c.id}, this.value)" class="text-[11px] bg-slate-100 border rounded px-1 py-0.5">
-                            ${stages.map(s => `<option value="${s.id}" ${c.stage === s.id ? 'selected' : ''}>${s.title}</option>`).join('')}
-                        </select>
-                    </div>
-                </div>
-            `;
-        }
-
-        function toggleModal() {
-            document.getElementById('modal').classList.toggle('hidden');
-        }
-
-        document.getElementById('client-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const newClient = {
-                id: Date.now(),
-                nombre: document.getElementById('nombre').value,
-                cedula: document.getElementById('cedula').value,
-                telefono: document.getElementById('telefono').value,
-                ciudad: document.getElementById('ciudad').value,
-                ramo: document.getElementById('ramo').value,
-                origen: document.getElementById('origen').value,
-                placa: document.getElementById('placa').value,
-                marca: document.getElementById('marca').value,
-                modelo: document.getElementById('modelo').value,
-                aseguradora: document.getElementById('aseguradora').value,
-                primaBruta: document.getElementById('primaBruta').value,
-                primaNeta: document.getElementById('primaNeta').value,
-                stage: 'contacto'
-            };
-            clients.push(newClient);
-            saveAndRender();
-            toggleModal();
-            this.reset();
-        });
-
-        function changeStage(id, newStage) {
-            clients = clients.map(c => c.id === id ? { ...c, stage: newStage } : c);
-            saveAndRender();
-        }
-
-        // Drag & Drop
-        function allowDrop(ev) { ev.preventDefault(); }
-        function drag(ev, id) { ev.dataTransfer.setData("text", id); }
-        function drop(ev, stageId) {
-            ev.preventDefault();
-            const id = ev.dataTransfer.getData("text");
-            changeStage(Number(id), stageId);
-        }
-
-        function saveAndRender() {
-            localStorage.setItem('merlin_clients', JSON.stringify(clients));
-            renderPipeline();
-        }
-
-        renderPipeline();
-    </script>
-</body>
-</html>
+                    <div class="pl-2 space-y-0.5 border-l-2 border-violet-900/40">
+                        <button onclick="filterBySubstate('Negociación en curso', 'Negociación en curso')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Negociación en curso</span>
+                            <span id="count-Negociación en curso" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Documentación pendiente', 'Doc. pendiente')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900
