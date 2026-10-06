@@ -11,17 +11,9 @@
                 extend: {
                     colors: {
                         purple: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            200: '#ddd6fe',
-                            300: '#c4b5fd',
-                            400: '#a78bfa',
-                            500: '#8b5cf6',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
-                            800: '#5b21b6',
-                            900: '#4c1d95',
-                            950: '#2e1065',
+                            50: '#f5f3ff', 100: '#ede9fe', 200: '#ddd6fe', 300: '#c4b5fd',
+                            400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9',
+                            800: '#5b21b6', 900: '#4c1d95', 950: '#2e1065',
                         }
                     }
                 }
@@ -30,20 +22,10 @@
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(15, 23, 42, 0.6);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(139, 92, 246, 0.3);
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(139, 92, 246, 0.6);
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(139, 92, 246, 0.3); border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.6); }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-purple-500 selection:text-white">
@@ -51,7 +33,6 @@
     <!-- Navbar Principal -->
     <header class="bg-slate-900 border-b border-purple-900/40 px-6 py-3.5 flex justify-between items-center shadow-lg relative z-20">
         <div class="flex items-center space-x-3">
-            <!-- Olive Branch Logo SVG (Estilo sutil morado / dorado) -->
             <div class="w-10 h-10 rounded-xl bg-purple-950 border border-purple-800/50 flex items-center justify-center shadow-inner text-amber-400">
                 <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 21c-4-4-7-9-7-14a7 7 0 0 1 14 0c0 5-3 10-7 14z" opacity="0.15" fill="currentColor"/>
@@ -95,7 +76,6 @@
             </div>
 
             <nav class="p-3 space-y-4 text-xs">
-                <!-- Filtro General -->
                 <div>
                     <button onclick="filterBySubstate('all', 'Todos los Estados')" class="substate-btn w-full text-left px-3 py-2 rounded-lg hover:bg-purple-900/30 text-slate-300 font-medium flex justify-between items-center transition bg-purple-950/40 border border-purple-800/30">
                         <span class="flex items-center gap-2">
@@ -112,24 +92,19 @@
                     </div>
                     <div class="pl-2 space-y-0.5 border-l-2 border-purple-900/50">
                         <button onclick="filterBySubstate('Potenciales', 'Potenciales')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Potenciales</span>
-                            <span id="count-Potenciales" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Potenciales</span><span id="count-Potenciales" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                         <button onclick="filterBySubstate('Habituales', 'Habituales')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Habituales</span>
-                            <span id="count-Habituales" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Habituales</span><span id="count-Habituales" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                         <button onclick="filterBySubstate('Reanudados', 'Reanudados')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Reanudados</span>
-                            <span id="count-Reanudados" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Reanudados</span><span id="count-Reanudados" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                         <button onclick="filterBySubstate('Inactivos', 'Inactivos')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Inactivos</span>
-                            <span id="count-Inactivos" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Inactivos</span><span id="count-Inactivos" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                         <button onclick="filterBySubstate('Ilocalizables', 'Ilocalizables')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Ilocalizables</span>
-                            <span id="count-Ilocalizables" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Ilocalizables</span><span id="count-Ilocalizables" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                     </div>
                 </div>
@@ -141,36 +116,28 @@
                     </div>
                     <div class="pl-2 space-y-0.5 border-l-2 border-amber-900/40">
                         <button onclick="filterBySubstate('Solicitud de elaboración', 'Solicitud elaboración')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Solicitud elaboración</span>
-                            <span id="count-Solicitud de elaboración" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Solicitud elaboración</span><span id="count-Solicitud de elaboración" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                         <button onclick="filterBySubstate('Propuesta elaborada', 'Propuesta elaborada')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Propuesta elaborada</span>
-                            <span id="count-Propuesta elaborada" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Propuesta elaborada</span><span id="count-Propuesta elaborada" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                         <button onclick="filterBySubstate('Propuesta enviada', 'Propuesta enviada')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Propuesta enviada</span>
-                            <span id="count-Propuesta enviada" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Propuesta enviada</span><span id="count-Propuesta enviada" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                         <button onclick="filterBySubstate('Inspección', 'Inspección')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Inspección</span>
-                            <span id="count-Inspección" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Inspección</span><span id="count-Inspección" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                         <button onclick="filterBySubstate('Re-inspección', 'Re-inspección')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Re-inspección</span>
-                            <span id="count-Re-inspección" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Re-inspección</span><span id="count-Re-inspección" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                         <button onclick="filterBySubstate('Emisión Solicitada', 'Emisión Solicitada')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Emisión Solicitada</span>
-                            <span id="count-Emisión Solicitada" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Emisión Solicitada</span><span id="count-Emisión Solicitada" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                         <button onclick="filterBySubstate('Póliza elaborada', 'Póliza elaborada')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Póliza elaborada</span>
-                            <span id="count-Póliza elaborada" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Póliza elaborada</span><span id="count-Póliza elaborada" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                         <button onclick="filterBySubstate('Autorización especial', 'Autorización especial')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Autorización especial</span>
-                            <span id="count-Autorización especial" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Autorización especial</span><span id="count-Autorización especial" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
                     </div>
                 </div>
@@ -182,7 +149,76 @@
                     </div>
                     <div class="pl-2 space-y-0.5 border-l-2 border-violet-900/40">
                         <button onclick="filterBySubstate('Negociación en curso', 'Negociación en curso')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
-                            <span>• Negociación en curso</span>
-                            <span id="count-Negociación en curso" class="text-[10px] text-slate-500 font-medium">0</span>
+                            <span>• Negociación en curso</span><span id="count-Negociación en curso" class="text-[10px] text-slate-500 font-medium">0</span>
                         </button>
-                        <button onclick="filterBySubstate('Documentación pendiente', 'Doc. pendiente')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900
+                        <button onclick="filterBySubstate('Documentación pendiente', 'Doc. pendiente')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Doc. pendiente</span><span id="count-Documentación pendiente" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Cliente de MERLÍN', 'Cliente MERLÍN')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Cliente MERLÍN</span><span id="count-Cliente de MERLÍN" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Propuesta aplazada', 'Propuesta aplazada')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Propuesta aplazada</span><span id="count-Propuesta aplazada" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. Módulo Financiero -->
+                <div class="space-y-1">
+                    <div class="px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                        <span class="text-emerald-400"><i class="fa-solid fa-receipt mr-1.5"></i>4. Financiero</span>
+                    </div>
+                    <div class="pl-2 space-y-0.5 border-l-2 border-emerald-900/40">
+                        <button onclick="filterBySubstate('Sin cobrar', 'Sin cobrar')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Sin cobrar</span><span id="count-Sin cobrar" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Cobrado financiado', 'Cobrado financiado')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Cobrado financiado</span><span id="count-Cobrado financiado" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Cobrado contado', 'Cobrado contado')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Cobrado contado</span><span id="count-Cobrado contado" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Cobrado acuerdo', 'Cobrado acuerdo')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Cobrado acuerdo</span><span id="count-Cobrado acuerdo" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 5. Módulo de Radicación -->
+                <div class="space-y-1">
+                    <div class="px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                        <span class="text-fuchsia-400"><i class="fa-solid fa-folder-closed mr-1.5"></i>5. Radicación</span>
+                    </div>
+                    <div class="pl-2 space-y-0.5 border-l-2 border-fuchsia-900/40">
+                        <button onclick="filterBySubstate('Radicación enviada', 'Radicación enviada')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Radicación enviada</span><span id="count-Radicación enviada" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Radicación aceptada', 'Radicación aceptada')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Radicación aceptada</span><span id="count-Radicación aceptada" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                        <button onclick="filterBySubstate('Radicación devuelta', 'Radicación devuelta')" class="substate-btn w-full text-left px-2.5 py-1.5 rounded-md hover:bg-purple-900/20 text-slate-400 hover:text-slate-200 flex justify-between items-center transition">
+                            <span>• Radicación devuelta</span><span id="count-Radicación devuelta" class="text-[10px] text-slate-500 font-medium">0</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Workspace: Kanban Board -->
+        <main class="flex-1 bg-slate-950 p-5 overflow-x-auto custom-scrollbar flex flex-col">
+            <div class="mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                <div class="flex items-center gap-2">
+                    <span class="text-xs text-slate-400">Vistas Kanban:</span>
+                    <span id="current-view-title" class="text-xs font-bold text-purple-300 bg-purple-950 border border-purple-800/40 px-3 py-1 rounded-full">
+                        Flujo Completo (5 Módulos)
+                    </span>
+                </div>
+                <div class="relative w-full sm:w-64">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-slate-500"></i>
+                    <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Buscar cliente, CC o placa..." class="w-full bg-slate-900 border border-purple-900/40 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-purple-500 transition">
+                </div>
+            </div>
+
+            <div id="pipeline-container" class="flex gap-4 flex-1 items-start min-w-[1400px]"></div>
+        </main>
+    </div>
