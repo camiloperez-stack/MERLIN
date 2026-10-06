@@ -1,231 +1,215 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM - Merlín Seguros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="es"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;CRM - Merlín Seguros&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="bg-slate-100 text-slate-800 font-sans min-h-screen"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Navbar --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;header class="bg-indigo-900 text-white p-4 shadow-lg flex justify-between items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="flex items-center space-x-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;i class="fa-solid fa-wand-magic-sparkles text-amber-400 text-2xl"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-xl font-bold tracking-wide"&gt;MERLÍN SEGUROS — CRM Pipeline&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="toggleModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-4 py-2 rounded-lg transition shadow"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>+ Nuevo Cliente</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Main Content / Pipeline --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;main class="p-6 overflow-x-auto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="pipeline-container" class="flex gap-4 min-w-[1500px]"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Las columnas se generan con JavaScript --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Modal Formulario --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="modal" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center p-4 z-50"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-center mb-4 border-b pb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-lg font-bold text-indigo-900"&gt;Registrar Cliente / Solicitud&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button onclick="toggleModal()" class="text-slate-400 hover:text-slate-600 text-xl"&gt;&amp;times;&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;form id="client-form" class="space-y-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-2 gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="block text-xs font-semibold uppercase text-slate-500"&gt;Ramo&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;select id="ramo" class="w-full border p-2 rounded text-sm bg-slate-50"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Autos"&gt;Autos&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Vida"&gt;Vida&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Hogar"&gt;Hogar&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Salud"&gt;Salud&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="block text-xs font-semibold uppercase text-slate-500"&gt;Fuente / Origen&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;select id="origen" class="w-full border p-2 rounded text-sm bg-slate-50"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Meta"&gt;Meta&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="TikTok"&gt;TikTok&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Google"&gt;Google&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Referido"&gt;Referidos&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="border-t pt-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xs font-bold uppercase text-indigo-900 mb-2"&gt;Datos de la Persona&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="grid grid-cols-2 gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input id="nombre" type="text" placeholder="Nombre completo" class="border p-2 rounded text-sm w-full" required&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input id="cedula" type="text" placeholder="CC / NIT" class="border p-2 rounded text-sm w-full" required&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input id="telefono" type="tel" placeholder="Teléfono" class="border p-2 rounded text-sm w-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input id="ciudad" type="text" placeholder="Ciudad" class="border p-2 rounded text-sm w-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="border-t pt-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xs font-bold uppercase text-indigo-900 mb-2"&gt;Datos del Vehículo / Objeto&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="grid grid-cols-3 gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input id="placa" type="text" placeholder="Placa" class="border p-2 rounded text-sm w-full uppercase"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input id="marca" type="text" placeholder="Marca y Línea" class="border p-2 rounded text-sm w-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input id="modelo" type="text" placeholder="Modelo" class="border p-2 rounded text-sm w-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="border-t pt-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xs font-bold uppercase text-indigo-900 mb-2"&gt;Compañía &amp; Financiero&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="grid grid-cols-3 gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input id="aseguradora" type="text" placeholder="Aseguradora" class="border p-2 rounded text-sm w-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input id="primaBruta" type="number" placeholder="Prima Bruta ($)" class="border p-2 rounded text-sm w-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input id="primaNeta" type="number" placeholder="Prima Neta ($)" class="border p-2 rounded text-sm w-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex justify-end gap-2 pt-4 border-t"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button type="button" onclick="toggleModal()" class="px-4 py-2 border rounded text-slate-600 text-sm"&gt;Cancelar&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button type="submit" class="px-4 py-2 bg-indigo-900 text-white rounded text-sm hover:bg-indigo-800"&gt;Guardar&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/form&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Script Principal --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const stages = [</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'contacto', title: '1. Contacto', color: 'border-blue-500' },</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'tecnico', title: '2. Técnico', color: 'border-yellow-500' },</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'comercial', title: '3. Comercial', color: 'border-orange-500' },</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'financiero', title: '4. Financiero', color: 'border-emerald-500' },</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'radicacion', title: '5. Radicación', color: 'border-purple-500' }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>let clients = JSON.parse(localStorage.getItem('merlin_clients')) || [</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{</p>
-<p class="p1"><span class="Apple-converted-space">                </span>id: 1,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>nombre: 'Carlos Pérez',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>cedula: '1018239120',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>telefono: '3001234567',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>ramo: 'Autos',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>origen: 'Meta',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>placa: 'KLR-456',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>marca: 'Mazda 3',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>aseguradora: 'Sura',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>primaBruta: 2500000,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>stage: 'contacto',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>substate: 'Potencial'</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function renderPipeline() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById('pipeline-container');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>container.innerHTML = '';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>stages.forEach(stage =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const column = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>column.className = `w-72 bg-slate-200/60 rounded-lg p-3 flex flex-col gap-3 border-t-4 ${stage.color} min-h-[70vh]`;</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const stageClients = clients.filter(c =&gt; c.stage === stage.id);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>column.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex justify-between items-center mb-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h2 class="font-bold text-sm text-slate-700 uppercase"&gt;${stage.title}&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="bg-slate-300 text-slate-700 text-xs px-2 py-0.5 rounded-full font-bold"&gt;${stageClients.length}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex-1 space-y-3 overflow-y-auto" ondragover="allowDrop(event)" ondrop="drop(event, '${stage.id}')"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>${stageClients.map(c =&gt; createCard(c)).join('')}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>container.appendChild(column);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function createCard(c) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return `</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="card-${c.id}" draggable="true" ondragstart="drag(event, ${c.id})" class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition cursor-grab active:cursor-grabbing"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex justify-between items-start mb-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-[10px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-full"&gt;${c.ramo}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-[10px] text-slate-400 font-medium"&gt;${c.origen}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-sm text-slate-800"&gt;${c.nombre}&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-xs text-slate-500"&gt;CC: ${c.cedula}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>${c.placa ? `&lt;p class="text-xs font-semibold text-slate-700 mt-1"&gt;&lt;i class="fa-solid fa-car text-slate-400 mr-1"&gt;&lt;/i&gt;${c.placa} (${c.marca})&lt;/p&gt;` : ''}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="mt-3 pt-2 border-t flex justify-between items-center text-xs"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-emerald-600 font-bold"&gt;$${Number(c.primaBruta || 0).toLocaleString()}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;select onchange="changeStage(${c.id}, this.value)" class="text-[11px] bg-slate-100 border rounded px-1 py-0.5"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>${stages.map(s =&gt; `&lt;option value="${s.id}" ${c.stage === s.id ? 'selected' : ''}&gt;${s.title}&lt;/option&gt;`).join('')}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function toggleModal() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('modal').classList.toggle('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('client-form').addEventListener('submit', function(e) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>e.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const newClient = {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>id: Date.now(),</p>
-<p class="p1"><span class="Apple-converted-space">                </span>nombre: document.getElementById('nombre').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>cedula: document.getElementById('cedula').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>telefono: document.getElementById('telefono').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>ciudad: document.getElementById('ciudad').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>ramo: document.getElementById('ramo').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>origen: document.getElementById('origen').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>placa: document.getElementById('placa').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>marca: document.getElementById('marca').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>modelo: document.getElementById('modelo').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>aseguradora: document.getElementById('aseguradora').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>primaBruta: document.getElementById('primaBruta').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>primaNeta: document.getElementById('primaNeta').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>stage: 'contacto'</p>
-<p class="p1"><span class="Apple-converted-space">            </span>};</p>
-<p class="p1"><span class="Apple-converted-space">            </span>clients.push(newClient);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>saveAndRender();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>toggleModal();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>this.reset();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function changeStage(id, newStage) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>clients = clients.map(c =&gt; c.id === id ? { ...c, stage: newStage } : c);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>saveAndRender();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Drag &amp; Drop</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function allowDrop(ev) { ev.preventDefault(); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function drag(ev, id) { ev.dataTransfer.setData("text", id); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function drop(ev, stageId) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>ev.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const id = ev.dataTransfer.getData("text");</p>
-<p class="p1"><span class="Apple-converted-space">            </span>changeStage(Number(id), stageId);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function saveAndRender() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem('merlin_clients', JSON.stringify(clients));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>renderPipeline();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>renderPipeline();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen">
+
+    <!-- Navbar -->
+    <header class="bg-indigo-900 text-white p-4 shadow-lg flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-wand-magic-sparkles text-amber-400 text-2xl"></i>
+            <h1 class="text-xl font-bold tracking-wide">MERLÍN SEGUROS — CRM Pipeline</h1>
+        </div>
+        <button onclick="toggleModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold px-4 py-2 rounded-lg transition shadow">
+            + Nuevo Cliente
+        </button>
+    </header>
+
+    <!-- Main Content / Pipeline -->
+    <main class="p-6 overflow-x-auto">
+        <div id="pipeline-container" class="flex gap-4 min-w-[1500px]">
+            <!-- Las columnas se generan con JavaScript -->
+        </div>
+    </main>
+
+    <!-- Modal Formulario -->
+    <div id="modal" class="fixed inset-0 bg-black/50 hidden flex justify-center items-center p-4 z-50">
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4 border-b pb-2">
+                <h2 class="text-lg font-bold text-indigo-900">Registrar Cliente / Solicitud</h2>
+                <button onclick="toggleModal()" class="text-slate-400 hover:text-slate-600 text-xl">&times;</button>
+            </div>
+            <form id="client-form" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-slate-500">Ramo</label>
+                        <select id="ramo" class="w-full border p-2 rounded text-sm bg-slate-50">
+                            <option value="Autos">Autos</option>
+                            <option value="Vida">Vida</option>
+                            <option value="Hogar">Hogar</option>
+                            <option value="Salud">Salud</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-slate-500">Fuente / Origen</label>
+                        <select id="origen" class="w-full border p-2 rounded text-sm bg-slate-50">
+                            <option value="Meta">Meta</option>
+                            <option value="TikTok">TikTok</option>
+                            <option value="Google">Google</option>
+                            <option value="Referido">Referidos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="border-t pt-2">
+                    <h3 class="text-xs font-bold uppercase text-indigo-900 mb-2">Datos de la Persona</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <input id="nombre" type="text" placeholder="Nombre completo" class="border p-2 rounded text-sm w-full" required>
+                        <input id="cedula" type="text" placeholder="CC / NIT" class="border p-2 rounded text-sm w-full" required>
+                        <input id="telefono" type="tel" placeholder="Teléfono" class="border p-2 rounded text-sm w-full">
+                        <input id="ciudad" type="text" placeholder="Ciudad" class="border p-2 rounded text-sm w-full">
+                    </div>
+                </div>
+
+                <div class="border-t pt-2">
+                    <h3 class="text-xs font-bold uppercase text-indigo-900 mb-2">Datos del Vehículo / Objeto</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <input id="placa" type="text" placeholder="Placa" class="border p-2 rounded text-sm w-full uppercase">
+                        <input id="marca" type="text" placeholder="Marca y Línea" class="border p-2 rounded text-sm w-full">
+                        <input id="modelo" type="text" placeholder="Modelo" class="border p-2 rounded text-sm w-full">
+                    </div>
+                </div>
+
+                <div class="border-t pt-2">
+                    <h3 class="text-xs font-bold uppercase text-indigo-900 mb-2">Compañía & Financiero</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <input id="aseguradora" type="text" placeholder="Aseguradora" class="border p-2 rounded text-sm w-full">
+                        <input id="primaBruta" type="number" placeholder="Prima Bruta ($)" class="border p-2 rounded text-sm w-full">
+                        <input id="primaNeta" type="number" placeholder="Prima Neta ($)" class="border p-2 rounded text-sm w-full">
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-4 border-t">
+                    <button type="button" onclick="toggleModal()" class="px-4 py-2 border rounded text-slate-600 text-sm">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-indigo-900 text-white rounded text-sm hover:bg-indigo-800">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script Principal -->
+    <script>
+        const stages = [
+            { id: 'contacto', title: '1. Contacto', color: 'border-blue-500' },
+            { id: 'tecnico', title: '2. Técnico', color: 'border-yellow-500' },
+            { id: 'comercial', title: '3. Comercial', color: 'border-orange-500' },
+            { id: 'financiero', title: '4. Financiero', color: 'border-emerald-500' },
+            { id: 'radicacion', title: '5. Radicación', color: 'border-purple-500' }
+        ];
+
+        let clients = JSON.parse(localStorage.getItem('merlin_clients')) || [
+            {
+                id: 1,
+                nombre: 'Carlos Pérez',
+                cedula: '1018239120',
+                telefono: '3001234567',
+                ramo: 'Autos',
+                origen: 'Meta',
+                placa: 'KLR-456',
+                marca: 'Mazda 3',
+                aseguradora: 'Sura',
+                primaBruta: 2500000,
+                stage: 'contacto',
+                substate: 'Potencial'
+            }
+        ];
+
+        function renderPipeline() {
+            const container = document.getElementById('pipeline-container');
+            container.innerHTML = '';
+
+            stages.forEach(stage => {
+                const column = document.createElement('div');
+                column.className = `w-72 bg-slate-200/60 rounded-lg p-3 flex flex-col gap-3 border-t-4 ${stage.color} min-h-[70vh]`;
+                
+                const stageClients = clients.filter(c => c.stage === stage.id);
+
+                column.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <h2 class="font-bold text-sm text-slate-700 uppercase">${stage.title}</h2>
+                        <span class="bg-slate-300 text-slate-700 text-xs px-2 py-0.5 rounded-full font-bold">${stageClients.length}</span>
+                    </div>
+                    <div class="flex-1 space-y-3 overflow-y-auto" ondragover="allowDrop(event)" ondrop="drop(event, '${stage.id}')">
+                        ${stageClients.map(c => createCard(c)).join('')}
+                    </div>
+                `;
+                container.appendChild(column);
+            });
+        }
+
+        function createCard(c) {
+            return `
+                <div id="card-${c.id}" draggable="true" ondragstart="drag(event, ${c.id})" class="bg-white p-3 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition cursor-grab active:cursor-grabbing">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-[10px] font-bold px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-full">${c.ramo}</span>
+                        <span class="text-[10px] text-slate-400 font-medium">${c.origen}</span>
+                    </div>
+                    <h3 class="font-bold text-sm text-slate-800">${c.nombre}</h3>
+                    <p class="text-xs text-slate-500">CC: ${c.cedula}</p>
+                    ${c.placa ? `<p class="text-xs font-semibold text-slate-700 mt-1"><i class="fa-solid fa-car text-slate-400 mr-1"></i>${c.placa} (${c.marca})</p>` : ''}
+                    <div class="mt-3 pt-2 border-t flex justify-between items-center text-xs">
+                        <span class="text-emerald-600 font-bold">$${Number(c.primaBruta || 0).toLocaleString()}</span>
+                        <select onchange="changeStage(${c.id}, this.value)" class="text-[11px] bg-slate-100 border rounded px-1 py-0.5">
+                            ${stages.map(s => `<option value="${s.id}" ${c.stage === s.id ? 'selected' : ''}>${s.title}</option>`).join('')}
+                        </select>
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleModal() {
+            document.getElementById('modal').classList.toggle('hidden');
+        }
+
+        document.getElementById('client-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newClient = {
+                id: Date.now(),
+                nombre: document.getElementById('nombre').value,
+                cedula: document.getElementById('cedula').value,
+                telefono: document.getElementById('telefono').value,
+                ciudad: document.getElementById('ciudad').value,
+                ramo: document.getElementById('ramo').value,
+                origen: document.getElementById('origen').value,
+                placa: document.getElementById('placa').value,
+                marca: document.getElementById('marca').value,
+                modelo: document.getElementById('modelo').value,
+                aseguradora: document.getElementById('aseguradora').value,
+                primaBruta: document.getElementById('primaBruta').value,
+                primaNeta: document.getElementById('primaNeta').value,
+                stage: 'contacto'
+            };
+            clients.push(newClient);
+            saveAndRender();
+            toggleModal();
+            this.reset();
+        });
+
+        function changeStage(id, newStage) {
+            clients = clients.map(c => c.id === id ? { ...c, stage: newStage } : c);
+            saveAndRender();
+        }
+
+        // Drag & Drop
+        function allowDrop(ev) { ev.preventDefault(); }
+        function drag(ev, id) { ev.dataTransfer.setData("text", id); }
+        function drop(ev, stageId) {
+            ev.preventDefault();
+            const id = ev.dataTransfer.getData("text");
+            changeStage(Number(id), stageId);
+        }
+
+        function saveAndRender() {
+            localStorage.setItem('merlin_clients', JSON.stringify(clients));
+            renderPipeline();
+        }
+
+        renderPipeline();
+    </script>
 </body>
 </html>
