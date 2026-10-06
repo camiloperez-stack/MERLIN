@@ -222,3 +222,414 @@
             <div id="pipeline-container" class="flex gap-4 flex-1 items-start min-w-[1400px]"></div>
         </main>
     </div>
+<!-- Modal 1: Ficha Detallada del Cliente -->
+    <div id="modal-detail" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden flex justify-center items-center p-4 z-50">
+        <div class="bg-slate-900 border border-purple-800/40 rounded-2xl shadow-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto custom-scrollbar text-slate-200">
+            <div class="flex justify-between items-start pb-4 border-b border-purple-900/30">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span id="detail-ramo-badge" class="text-[10px] font-bold px-2.5 py-0.5 bg-purple-900/80 text-purple-200 border border-purple-700/50 rounded-full">RAMO</span>
+                        <span id="detail-origen-badge" class="text-[10px] font-semibold text-slate-400">Origen</span>
+                    </div>
+                    <h2 id="detail-nombre" class="text-xl font-bold text-white">Nombre del Cliente</h2>
+                    <p id="detail-cedula" class="text-xs text-slate-400">CC / NIT: -</p>
+                </div>
+                <button onclick="closeDetailModal()" class="text-slate-400 hover:text-white text-xl bg-slate-800 w-8 h-8 rounded-lg flex items-center justify-center transition">&times;</button>
+            </div>
+
+            <div class="py-4 space-y-5">
+                <div class="grid grid-cols-2 gap-4 bg-slate-950/60 p-3.5 rounded-xl border border-purple-900/20">
+                    <div>
+                        <span class="text-[10px] uppercase font-bold text-slate-500 block">Teléfono / WhatsApp</span>
+                        <p id="detail-telefono" class="text-sm font-semibold text-purple-300 mt-0.5">-</p>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase font-bold text-slate-500 block">Ciudad</span>
+                        <p id="detail-ciudad" class="text-sm font-semibold text-slate-200 mt-0.5">-</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-purple-400 mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-car text-purple-400"></i> Vehículo / Bien Asegurado
+                    </h3>
+                    <div class="grid grid-cols-3 gap-3 bg-slate-950/60 p-3.5 rounded-xl border border-purple-900/20 text-xs">
+                        <div>
+                            <span class="text-slate-500 block">Placa</span>
+                            <span id="detail-placa" class="font-bold text-white text-sm uppercase">-</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">Marca y Línea</span>
+                            <span id="detail-marca" class="font-medium text-slate-300">-</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">Modelo</span>
+                            <span id="detail-modelo" class="font-medium text-slate-300">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> Compañía & Primas
+                    </h3>
+                    <div class="grid grid-cols-3 gap-3 bg-slate-950/60 p-3.5 rounded-xl border border-purple-900/20 text-xs">
+                        <div>
+                            <span class="text-slate-500 block">Aseguradora</span>
+                            <span id="detail-aseguradora" class="font-semibold text-slate-200">-</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">Prima Bruta</span>
+                            <span id="detail-prima-bruta" class="font-bold text-emerald-400 text-sm">$0</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 block">Prima Neta</span>
+                            <span id="detail-prima-neta" class="font-bold text-emerald-300 text-sm">$0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-950/40 p-4 rounded-xl border border-purple-800/40 space-y-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-purple-300">Actualizar Estado en el Flujo</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[10px] text-slate-400 mb-1">Módulo Principal</label>
+                            <select id="detail-select-stage" onchange="updateSubstateOptionsInDetail()" class="w-full bg-slate-900 border border-purple-800/50 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-purple-500">
+                                <option value="contacto">1. Módulo de Contacto</option>
+                                <option value="tecnico">2. Módulo Técnico</option>
+                                <option value="comercial">3. Módulo Comercial</option>
+                                <option value="financiero">4. Módulo Financiero</option>
+                                <option value="radicacion">5. Módulo de Radicación</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-400 mb-1">Sub-Estado Específico</label>
+                            <select id="detail-select-substate" class="w-full bg-slate-900 border border-purple-800/50 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-purple-500"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center pt-4 border-t border-purple-900/30">
+                <button id="btn-delete-ticket" class="text-xs text-rose-400 hover:text-rose-300 hover:bg-rose-950/40 px-3 py-2 rounded-lg border border-rose-900/30 transition">
+                    <i class="fa-solid fa-trash mr-1"></i> Eliminar Ticket
+                </button>
+                <div class="flex gap-2">
+                    <a id="btn-whatsapp" href="#" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                    </a>
+                    <button onclick="saveDetailChanges()" class="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition shadow-lg shadow-purple-950">
+                        Guardar Cambios
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Formulario de Registro -->
+    <div id="modal-form" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden flex justify-center items-center p-4 z-50">
+        <div class="bg-slate-900 border border-purple-800/40 rounded-2xl shadow-2xl max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <div class="flex justify-between items-center pb-3 border-b border-purple-900/30">
+                <h2 class="text-base font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-file-circle-plus text-purple-400"></i> Nuevo Ticket / Solicitud
+                </h2>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-xl bg-slate-800 w-8 h-8 rounded-lg flex items-center justify-center transition">&times;</button>
+            </div>
+
+            <form id="client-form" class="space-y-4 text-xs mt-4">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-300 mb-1">Módulo de Ramo *</label>
+                        <select id="ramo" class="w-full bg-slate-950 border border-purple-900/50 p-2.5 rounded-lg text-slate-200 focus:border-purple-500 outline-none">
+                            <option value="Autos">Autos</option>
+                            <option value="Vida">Vida</option>
+                            <option value="Hogar">Hogar</option>
+                            <option value="Salud">Salud</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-semibold text-slate-300 mb-1">Origen / Prospecto *</label>
+                        <select id="origen" class="w-full bg-slate-950 border border-purple-900/50 p-2.5 rounded-lg text-slate-200 focus:border-purple-500 outline-none">
+                            <option value="Meta">Meta (Facebook/Instagram)</option>
+                            <option value="TikTok">TikTok</option>
+                            <option value="Google">Google</option>
+                            <option value="Referidos">Referidos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="border-t border-purple-900/30 pt-3">
+                    <h3 class="text-[11px] font-bold uppercase tracking-wider text-purple-400 mb-2">Datos del Cliente</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <input id="nombre" type="text" placeholder="Nombre Completo *" class="bg-slate-950 border border-purple-900/40 p-2.5 rounded-lg text-slate-200 focus:border-purple-500 outline-none w-full" required>
+                        <input id="cedula" type="text" placeholder="CC / NIT *" class="bg-slate-950 border border-purple-900/40 p-2.5 rounded-lg text-slate-200 focus:border-purple-500 outline-none w-full" required>
+                        <input id="telefono" type="tel" placeholder="Teléfono / Celular" class="bg-slate-950 border border-purple-900/40 p-2.5 rounded-lg text-slate-200 focus:border-purple-500 outline-none w-full">
+                        <input id="ciudad" type="text" placeholder="Ciudad" class="bg-slate-950 border border-purple-900/40 p-2.5 rounded-lg text-slate-200 focus:border-purple-500 outline-none w-full">
+                    </div>
+                </div>
+
+                <div class="border-t border-purple-900/30 pt-3">
+                    <h3 class="text-[11px] font-bold uppercase tracking-wider text-purple-400 mb-2">Datos del Vehículo / Riesgo</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <input id="placa" type="text" placeholder="Placa (ej: KLR456)" class="bg-slate-950 border border-purple-900/40 p-2.5 rounded-lg text-slate-200 uppercase focus:border-purple-500 outline-none w-full">
+                        <input id="marca" type="text" placeholder="Marca y Línea" class="bg-slate-950 border border-purple-900/40 p-2.5 rounded-lg text-slate-200 focus:border-purple-500 outline-none w-full">
+                        <input id="modelo" type="text" placeholder="Modelo (Año)" class="bg-slate-950 border border-purple-900/40 p-2.5 rounded-lg text-slate-200 focus:border-purple-500 outline-none w-full">
+                    </div>
+                </div>
+
+                <div class="border-t border-purple-900/30 pt-3">
+                    <h3 class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 mb-2">Negocio y Compañía</h3>
+                    <div class="grid grid-cols-3 gap-3">
+                        <input id="aseguradora" type="text" placeholder="Aseguradora" class="bg-slate-950 border border-purple-900/40 p-2.5 rounded-lg text-slate-200 focus:border-purple-500 outline-none w-full">
+                        <input id="primaBruta" type="number" placeholder="Prima Bruta ($)" class="bg-slate-950 border border-purple-900/40 p-2.5 rounded-lg text-slate-200 focus:border-purple-500 outline-none w-full">
+                        <input id="primaNeta" type="number" placeholder="Prima Neta ($)" class="bg-slate-950 border border-purple-900/40 p-2.5 rounded-lg text-slate-200 focus:border-purple-500 outline-none w-full">
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-4 border-t border-purple-900/30">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 border border-slate-700 rounded-xl text-slate-400 hover:bg-slate-800 transition">Cancelar</button>
+                    <button type="submit" class="px-5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-semibold shadow-lg shadow-purple-950 hover:from-purple-500 hover:to-indigo-500 transition">
+                        Guardar Ticket
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const stages = [
+            { id: 'contacto', title: '1. Contacto', color: 'border-purple-500', icon: 'fa-address-book' },
+            { id: 'tecnico', title: '2. Técnico', color: 'border-amber-500', icon: 'fa-gears' },
+            { id: 'comercial', title: '3. Comercial', color: 'border-violet-500', icon: 'fa-handshake' },
+            { id: 'financiero', title: '4. Financiero', color: 'border-emerald-500', icon: 'fa-receipt' },
+            { id: 'radicacion', title: '5. Radicación', color: 'border-fuchsia-500', icon: 'fa-folder-closed' }
+        ];
+
+        const substateMap = {
+            'contacto': ['Potenciales', 'Habituales', 'Reanudados', 'Inactivos', 'Ilocalizables'],
+            'tecnico': ['Solicitud de elaboración', 'Propuesta elaborada', 'Propuesta enviada', 'Inspección', 'Re-inspección', 'Emisión Solicitada', 'Póliza elaborada', 'Autorización especial'],
+            'comercial': ['Negociación en curso', 'Documentación pendiente', 'Cliente de MERLÍN', 'Propuesta aplazada'],
+            'financiero': ['Sin cobrar', 'Cobrado financiado', 'Cobrado contado', 'Cobrado acuerdo'],
+            'radicacion': ['Radicación enviada', 'Radicación aceptada', 'Radicación devuelta']
+        };
+
+        let clients = JSON.parse(localStorage.getItem('merlin_clients_v2')) || [
+            {
+                id: 101, nombre: 'Carlos Mario Mendoza', cedula: '1018239120', telefono: '3001234567', ciudad: 'Medellín',
+                ramo: 'Autos', origen: 'Meta', placa: 'KLR456', marca: 'Mazda CX-30', modelo: '2023', aseguradora: 'Sura',
+                primaBruta: 3200000, primaNeta: 2850000, stage: 'contacto', substate: 'Potenciales'
+            }
+        ];
+
+        let activeSubstateFilter = 'all';
+        let currentSelectedClientId = null;
+
+        function init() { updateCounts(); renderPipeline(); }
+
+        function updateCounts() {
+            document.getElementById('count-all').innerText = clients.length;
+            Object.values(substateMap).flat().forEach(sub => {
+                const el = document.getElementById(`count-${sub}`);
+                if (el) el.innerText = '0';
+            });
+            clients.forEach(c => {
+                if (c.substate) {
+                    const el = document.getElementById(`count-${c.substate}`);
+                    if (el) { el.innerText = (parseInt(el.innerText) || 0) + 1; }
+                }
+            });
+        }
+
+        function filterBySubstate(substate, label) {
+            activeSubstateFilter = substate;
+            const badge = document.getElementById('active-filter-badge');
+            const resetBtn = document.getElementById('btn-reset-filter');
+            const viewTitle = document.getElementById('current-view-title');
+
+            if (substate === 'all') {
+                badge.innerText = 'Todos'; resetBtn.classList.add('hidden');
+                viewTitle.innerText = 'Flujo Completo (5 Módulos)';
+            } else {
+                badge.innerText = label; resetBtn.classList.remove('hidden'); resetBtn.classList.add('flex');
+                viewTitle.innerText = `Filtrado por: ${label}`;
+            }
+            renderPipeline();
+        }
+
+        function clearFilter() { filterBySubstate('all', 'Todos los Estados'); }
+
+        function renderPipeline() {
+            const container = document.getElementById('pipeline-container');
+            container.innerHTML = '';
+            const searchVal = (document.getElementById('search-input').value || '').toLowerCase();
+
+            stages.forEach(stage => {
+                const column = document.createElement('div');
+                column.className = `w-72 bg-slate-900/70 border border-purple-900/30 rounded-2xl p-3.5 flex flex-col gap-3 shrink-0 border-t-4 ${stage.color} min-h-[75vh] shadow-xl backdrop-blur-sm`;
+                let stageClients = clients.filter(c => c.stage === stage.id);
+
+                if (activeSubstateFilter !== 'all') {
+                    stageClients = stageClients.filter(c => c.substate === activeSubstateFilter);
+                }
+                if (searchVal) {
+                    stageClients = stageClients.filter(c => 
+                        c.nombre.toLowerCase().includes(searchVal) || 
+                        c.cedula.toLowerCase().includes(searchVal) ||
+                        (c.placa && c.placa.toLowerCase().includes(searchVal))
+                    );
+                }
+
+                column.innerHTML = `
+                    <div class="flex justify-between items-center px-1 mb-0.5">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid ${stage.icon} text-xs text-slate-400"></i>
+                            <h2 class="font-bold text-xs uppercase tracking-wider text-slate-300">${stage.title}</h2>
+                        </div>
+                        <span class="bg-purple-900/60 text-purple-200 border border-purple-700/40 text-[10px] px-2 py-0.5 rounded-full font-bold">${stageClients.length}</span>
+                    </div>
+                    <div class="flex-1 space-y-3 overflow-y-auto custom-scrollbar pr-0.5" ondragover="allowDrop(event)" ondrop="drop(event, '${stage.id}')">
+                        ${stageClients.map(c => createCardHTML(c)).join('')}
+                        ${stageClients.length === 0 ? `<div class="text-center py-10 border border-dashed border-purple-900/30 rounded-xl text-slate-600 text-xs">Sin tickets</div>` : ''}
+                    </div>
+                `;
+                container.appendChild(column);
+            });
+        }
+
+        function createCardHTML(c) {
+            return `
+                <div id="card-${c.id}" draggable="true" ondragstart="drag(event, ${c.id})" onclick="openDetailModal(${c.id})" class="bg-slate-900/90 border border-purple-900/40 hover:border-purple-500/60 p-3.5 rounded-xl shadow-md hover:shadow-purple-950/50 transition cursor-pointer group relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-[10px] font-bold px-2 py-0.5 bg-purple-950 text-purple-300 border border-purple-800/40 rounded-md">${c.ramo}</span>
+                        <span class="text-[10px] font-semibold text-slate-500">${c.origen}</span>
+                    </div>
+                    <h3 class="font-bold text-sm text-slate-100 group-hover:text-purple-300 transition line-clamp-1">${c.nombre}</h3>
+                    <p class="text-[11px] text-slate-400">CC: ${c.cedula}</p>
+                    ${c.placa ? `
+                        <div class="mt-2 text-[11px] bg-slate-950/60 border border-purple-900/20 px-2 py-1 rounded text-slate-300 flex items-center justify-between">
+                            <span class="font-semibold text-purple-300"><i class="fa-solid fa-car text-[10px] mr-1 text-slate-500"></i>${c.placa}</span>
+                            <span class="text-[10px] text-slate-400">${c.marca || ''}</span>
+                        </div>
+                    ` : ''}
+                    <div class="mt-2.5 pt-2 border-t border-purple-900/20 flex justify-between items-center text-[11px]">
+                        <span class="text-xs font-bold text-emerald-400">$${Number(c.primaBruta || 0).toLocaleString()}</span>
+                        <span class="text-[10px] text-purple-300/80 bg-purple-950/80 px-2 py-0.5 rounded border border-purple-800/30 line-clamp-1 max-w-[110px]" title="${c.substate}">
+                            ${c.substate || 'Sin Estado'}
+                        </span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function handleSearch() { renderPipeline(); }
+        function openModal() { document.getElementById('modal-form').classList.remove('hidden'); }
+        function closeModal() { document.getElementById('modal-form').classList.add('hidden'); }
+
+        function openDetailModal(id) {
+            const client = clients.find(c => c.id === id);
+            if (!client) return;
+            currentSelectedClientId = id;
+
+            document.getElementById('detail-nombre').innerText = client.nombre;
+            document.getElementById('detail-cedula').innerText = `CC / NIT: ${client.cedula}`;
+            document.getElementById('detail-ramo-badge').innerText = client.ramo;
+            document.getElementById('detail-origen-badge').innerText = `Origen: ${client.origen}`;
+            document.getElementById('detail-telefono').innerText = client.telefono || 'No registrado';
+            document.getElementById('detail-ciudad').innerText = client.ciudad || 'No registrada';
+            document.getElementById('detail-placa').innerText = client.placa || 'N/A';
+            document.getElementById('detail-marca').innerText = client.marca || 'N/A';
+            document.getElementById('detail-modelo').innerText = client.modelo || 'N/A';
+            document.getElementById('detail-aseguradora').innerText = client.aseguradora || 'N/A';
+            document.getElementById('detail-prima-bruta').innerText = `$${Number(client.primaBruta || 0).toLocaleString()}`;
+            document.getElementById('detail-prima-neta').innerText = `$${Number(client.primaNeta || 0).toLocaleString()}`;
+
+            const waBtn = document.getElementById('btn-whatsapp');
+            if (client.telefono) {
+                const cleanPhone = client.telefono.replace(/\D/g, '');
+                waBtn.href = `https://wa.me/57${cleanPhone}?text=Hola%20${encodeURIComponent(client.nombre)},%20te%20contactamos%20de%20Merl%C3%ADn%20Seguros...`;
+                waBtn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                waBtn.href = '#'; waBtn.classList.add('opacity-50', 'pointer-events-none');
+            }
+
+            document.getElementById('detail-select-stage').value = client.stage;
+            updateSubstateOptionsInDetail(client.substate);
+
+            document.getElementById('btn-delete-ticket').onclick = function() {
+                if (confirm(`¿Estás seguro de eliminar el ticket de ${client.nombre}?`)) {
+                    clients = clients.filter(c => c.id !== id);
+                    saveAndRender(); closeDetailModal();
+                }
+            };
+
+            document.getElementById('modal-detail').classList.remove('hidden');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('modal-detail').classList.add('hidden');
+            currentSelectedClientId = null;
+        }
+
+        function updateSubstateOptionsInDetail(selectedSubstate) {
+            const stage = document.getElementById('detail-select-stage').value;
+            const substateSelect = document.getElementById('detail-select-substate');
+            substateSelect.innerHTML = '';
+            (substateMap[stage] || []).forEach(sub => {
+                const opt = document.createElement('option');
+                opt.value = sub; opt.innerText = sub;
+                if (sub === selectedSubstate) opt.selected = true;
+                substateSelect.appendChild(opt);
+            });
+        }
+
+        function saveDetailChanges() {
+            if (!currentSelectedClientId) return;
+            const newStage = document.getElementById('detail-select-stage').value;
+            const newSubstate = document.getElementById('detail-select-substate').value;
+            clients = clients.map(c => c.id === currentSelectedClientId ? { ...c, stage: newStage, substate: newSubstate } : c);
+            saveAndRender(); closeDetailModal();
+        }
+
+        document.getElementById('client-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            clients.push({
+                id: Date.now(),
+                nombre: document.getElementById('nombre').value,
+                cedula: document.getElementById('cedula').value,
+                telefono: document.getElementById('telefono').value,
+                ciudad: document.getElementById('ciudad').value,
+                ramo: document.getElementById('ramo').value,
+                origen: document.getElementById('origen').value,
+                placa: document.getElementById('placa').value,
+                marca: document.getElementById('marca').value,
+                modelo: document.getElementById('modelo').value,
+                aseguradora: document.getElementById('aseguradora').value,
+                primaBruta: document.getElementById('primaBruta').value,
+                primaNeta: document.getElementById('primaNeta').value,
+                stage: 'contacto', substate: 'Potenciales'
+            });
+            saveAndRender(); closeModal(); this.reset();
+        });
+
+        function allowDrop(ev) { ev.preventDefault(); }
+        function drag(ev, id) { ev.dataTransfer.setData("text/plain", id); }
+        function drop(ev, newStage) {
+            ev.preventDefault();
+            const id = Number(ev.dataTransfer.getData("text/plain"));
+            const client = clients.find(c => c.id === id);
+            if (client) {
+                let newSubstate = client.stage !== newStage ? (substateMap[newStage][0] || '') : client.substate;
+                clients = clients.map(c => c.id === id ? { ...c, stage: newStage, substate: newSubstate } : c);
+                saveAndRender();
+            }
+        }
+
+        function saveAndRender() {
+            localStorage.setItem('merlin_clients_v2', JSON.stringify(clients));
+            updateCounts(); renderPipeline();
+        }
+
+        init();
+    </script>
+</body>
+</html>
